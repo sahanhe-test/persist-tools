@@ -19,19 +19,34 @@ import ballerina/persist;
 @persist:Entity {
     key: ["id"]
 }
-public type Company record {|
+public type Profile record  {|
     readonly int id;
     string name;
-    Employee[] employees?;
+    @persist:Relation {keyColumns: ["userId"], reference: ["id"]}
+    User owner?;
+    MultipleAssociations multipleAssociations?;
 |};
 
 @persist:Entity {
     key: ["id"]
 }
-public type Employee record {|
+public type User record  {|
+    readonly int id;
+    string name;
+    Profile profile?;
+    MultipleAssociations multipleAssociations?;
+|};
+
+@persist:Entity {
+    key: ["id"]
+}
+public type MultipleAssociations record {|
     readonly int id;
     string name;
 
-    @persist:Relation {keyColumns: ["companyId"], reference: ["id"]}
-    Company company?;
+    @persist:Relation {keyColumns: ["profileId"], reference: ["id"]}
+    Profile profile?;
+
+    @persist:Relation {keyColumns: ["userId"], reference: ["id"]}
+    User owner?;
 |};
