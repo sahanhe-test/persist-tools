@@ -88,6 +88,7 @@ import static io.ballerina.persist.nodegenerator.BalSyntaxConstants.COLON;
 import static io.ballerina.persist.nodegenerator.BalSyntaxConstants.COMMA_SPACE;
 import static io.ballerina.persist.nodegenerator.BalSyntaxConstants.COMMA_WITH_NEWLINE;
 import static io.ballerina.persist.nodegenerator.BalSyntaxConstants.COMMENT_SHOULD_NOT_BE_MODIFIED;
+import static io.ballerina.persist.nodegenerator.BalSyntaxConstants.CONSTANT_DECLARATION_TEMPLATE;
 import static io.ballerina.persist.nodegenerator.BalSyntaxConstants.DB_CLIENT;
 import static io.ballerina.persist.nodegenerator.BalSyntaxConstants.DOUBLE_QUOTE;
 import static io.ballerina.persist.nodegenerator.BalSyntaxConstants.EMPTY_STRING;
@@ -387,7 +388,8 @@ public class BalSyntaxGenerator {
 
         for (Entity entity : entityModule.getEntityMap().values()) {
             moduleMembers = moduleMembers.add(NodeParser.parseModuleMemberDeclaration(String.format(
-                    "const %s = \"%s\";", getEntityNameConstant(entity.getEntityName()), entity.getResourceName())));
+                    CONSTANT_DECLARATION_TEMPLATE, getEntityNameConstant(entity.getEntityName()),
+                    entity.getResourceName())));
         }
 
         Client clientObject = createClient(entityModule);
