@@ -23,7 +23,7 @@ apply plugin: 'java'
 description = 'Ballerina - Persist Examples'
 
 def ballerinaDist = "${project.buildDir}/ballerina-distribution"
-def examples = ["medical-center"]
+def examples = ["medical-center", "rainier"]
 
 configurations {
     balTools

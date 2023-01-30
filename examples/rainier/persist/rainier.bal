@@ -23,16 +23,9 @@ type Building record {|
     string state;
     string country;
     string postalCode;
+    string 'type;
 
     Workspace[] workspaces;
-|};
-
-type Workspace record {|
-    readonly string workspaceId;
-    string workspaceType;
-
-    Building location;
-    Employee employee;
 |};
 
 type Department record {|
@@ -59,4 +52,12 @@ type OrderItem record {|
     readonly string itemId;
     int quantity;
     string notes;
+|};
+
+type Workspace record {|
+    readonly string workspaceId;
+    string workspaceType;
+
+    Building location;
+    Employee employee;
 |};
